@@ -67,9 +67,9 @@ public class Example {
         }
     }
 
-    /// <summary>
-    /// Example shows how to send a batch of messages. It's possible to send multiple individual messages in a single batch.
-    /// </summary>
+    /**
+     * Example shows how to send a batch of messages. It's possible to send multiple individual messages in a single batch.
+     */
     public static void SendMultipleMessages()
     {
     	System.out.println("EXECUTING SEND MULTIPLE MESSAGES...");
@@ -326,10 +326,10 @@ public class Example {
         }
     }
 
-    /// <summary>
-    /// Example demonstrates how to confirm receipt of a list of reports.
-    /// </summary>
-    /// <param name="listOfReceiptIds">List of receiptId's</param>
+    /**
+     * Example demonstrates how to confirm receipt of a list of reports.
+     * @param listOfReceiptIds List of receiptId's
+     */
     private static void ConfirmReports(List<Long> listOfReceiptIds)
     {
     	System.out.println("EXECUTING CONFIRM REPORTS....");
@@ -370,9 +370,9 @@ public class Example {
         }
     } 
 
-    /// <summary>
-    /// Example shows how to block numbers.
-    /// </summary>
+    /**
+     * Example shows how to block numbers.
+     */
     public static void BlockNumbers()
     {
     	System.out.println("EXECUTING BLOCK NUMBERS....");
