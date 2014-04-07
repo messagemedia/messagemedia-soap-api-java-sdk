@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar" name="Create Runnable Jar for MessageMedia SOAP JAVA sample">
+	<property name="target" value="1.7"/>
+    <property name="source" value="1.7"/>
+	<property name="debuglevel" value="source,lines,vars"/>
+	<path id="API.classpath">
+        <pathelement location="."/>
+        <pathelement location="lib/jaxrpc-api-1.1.jar"/>
+    </path>
+	<target name="clean">
+        <delete>
+            <fileset dir="." includes="**/*.class"/>
+        </delete>
+    </target>
+	<target name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" includeantruntime="false" source="${source}" target="${target}">
+            <src path="."/>
+            <classpath refid="API.classpath"/>
+        </javac>
+    </target>
+    <target name="create_run_jar" depends="build-project">
+        <jar destfile="messagemedia-java.jar" filesetmanifest="mergewithoutmain" includes="*.class">
+            <manifest>
+                <attribute name="Main-Class" value="Example"/>
+                <attribute name="Class-Path" value="."/>
+            </manifest>
+            <fileset dir="src"/>
+            <zipfileset excludes="META-INF/*.SF" src="lib/jaxrpc-api-1.1.jar"/>
+        </jar>
+    </target>
+</project>
