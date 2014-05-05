@@ -117,7 +117,6 @@ public class HeaderPanel extends JPanel {
         mUserIdField = new JTextField();
         mUserIdField.setBounds(99, 4, 187, 40);
         mLoginPanel.add(mUserIdField);
-        mUserIdField.setText("MessageMediaA004");
         mUserIdField.setFont(new Font("Tahoma", Font.PLAIN, 18));
         mUserIdField.setColumns(10);
         

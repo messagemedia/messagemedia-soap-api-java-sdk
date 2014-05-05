@@ -65,7 +65,6 @@ public class SendPanel extends JPanel {
         add(lblMessage);
         
         mToField = new JTextField();
-        mToField.setText("+61450178542");
         mToField.setFont(new Font("Tahoma", Font.PLAIN, 18));
         mToField.setBounds(106, 88, 234, 40);
         add(mToField);
@@ -78,7 +77,6 @@ public class SendPanel extends JPanel {
         mOriginField.setColumns(10);
         
         mContentField = new JTextPane();
-        mContentField.setText("Test");
         mContentField.setFont(new Font("Tahoma", Font.PLAIN, 22));
         mContentField.setBounds(106, 141, 667, 135);
         add(mContentField);
