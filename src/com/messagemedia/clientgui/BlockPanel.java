@@ -23,12 +23,13 @@ import javax.swing.JList;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
+@SuppressWarnings("serial")
 public class BlockPanel extends JPanel {
 
-	private Window           mWindow;
-	private JTextField       mBlockedNumberField;
-	private DefaultListModel mDataModel;
-	private JList<String>    mList;
+	private Window                   mWindow;
+	private JTextField               mBlockedNumberField;
+	private DefaultListModel<String> mDataModel;
+	private JList<String>            mList;
 	
 	/**
 	 * Construct blocked numbers panel
@@ -128,11 +129,11 @@ public class BlockPanel extends JPanel {
         add(lblUserInformation);
 	}
 	
-	public DefaultListModel getDataModel(){
+	public DefaultListModel<String> getDataModel(){
 		return mDataModel;
 	}
 	
-	public JList getlist(){
+	public JList<String> getlist(){
 		return mList;
 	}
 	

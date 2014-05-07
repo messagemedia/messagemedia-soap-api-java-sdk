@@ -22,6 +22,7 @@ import javax.swing.JTable;
 import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
 
+@SuppressWarnings("serial")
 public class ReplyPanel extends JPanel {
 
 	private Window            mWindow;

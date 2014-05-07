@@ -16,6 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
+@SuppressWarnings("serial")
 public class Window extends JFrame {
 	
 	private HeaderPanel mHeaderPanel;

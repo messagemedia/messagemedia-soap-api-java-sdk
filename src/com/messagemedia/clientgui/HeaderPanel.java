@@ -22,6 +22,7 @@ import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
 
+@SuppressWarnings("serial")
 public class HeaderPanel extends JPanel {
 	
 	private Window         mWindow;

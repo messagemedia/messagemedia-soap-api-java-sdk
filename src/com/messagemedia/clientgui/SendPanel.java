@@ -23,6 +23,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JSeparator;
 
+@SuppressWarnings("serial")
 public class SendPanel extends JPanel {
 
 	private Window     mWindow;
