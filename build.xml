@@ -22,7 +22,7 @@
     <target name="create_run_jar" depends="build-project">
         <jar destfile="messagemedia-java.jar" filesetmanifest="mergewithoutmain" includes="*.class">
             <manifest>
-                <attribute name="Main-Class" value="Example"/>
+                <attribute name="Main-Class" value="com.messagemedia.clientgui.Window"/>
                 <attribute name="Class-Path" value="."/>
             </manifest>
             <fileset dir="src"/>
