@@ -1,11 +1,9 @@
 # MessageMedia Java SDK
-
 This library provides a simple interface for sending and receiving messages using the [MessageMedia SOAP API](http://www.messagemedia.com.au/wp-content/uploads/2013/05/MessageMedia_Messaging_Web_Service.pdf?eacfbb).
 
 If you have any issue using this sample code, or would like to report a defect, you could [create a new Issue](https://github.com/messagemedia/messagemedia-java/issues/new) in Github or [Contact us](http://www.messagemedia.com.au/contact-us).
 
-## Installation:
- 
+## Installation 
 1. Run Ant build process with build.xml (default task create_run_jar) to produce messagemedia-java.jar. (http://ant.apache.org/): ```ant -buildfile build.xml```
 2. You may need to install Ant
      * on Debian/Ubuntu run ```sudo apt-get install ant```
@@ -13,7 +11,7 @@ If you have any issue using this sample code, or would like to report a defect, 
 3. You may need to install java-jre-7 eg
      * on Debian/Ubuntu run ```sudo apt-get install openjdk-7-jdk```
 
-## Usage:
+## Usage
    2. Execute example program with: ```java -jar messagemedia-java.jar```
    3. Input your MessageMedia User ID and Password when prompted. Press login.
    4. Four panels will appear. These allow you to:<br>
@@ -23,7 +21,6 @@ If you have any issue using this sample code, or would like to report a defect, 
      * view and manage blocked numbers.<br>
 
 ## Contributing
-
 We welcome contributions from our users. Contributing is easy:
 
   1.  Fork this repo
