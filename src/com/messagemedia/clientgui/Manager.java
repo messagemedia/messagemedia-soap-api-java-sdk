@@ -10,16 +10,6 @@
 
 package com.messagemedia.clientgui;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Vector;
-
-import javax.swing.DefaultListModel;
-import javax.swing.JList;
-import javax.swing.table.DefaultTableModel;
-import javax.xml.datatype.XMLGregorianCalendar;
-
 import com.messagemedia.client.MessageMediaSoapClient;
 import com.messagemedia.service.BlockNumbersResultType;
 import com.messagemedia.service.CheckRepliesResultType;
@@ -27,6 +17,7 @@ import com.messagemedia.service.CheckReportsResultType;
 import com.messagemedia.service.CheckUserResultType;
 import com.messagemedia.service.ConfirmRepliesResultType;
 import com.messagemedia.service.ConfirmReportsResultType;
+import com.messagemedia.service.DeleteScheduledMessagesResultType;
 import com.messagemedia.service.GetBlockedNumbersResultType;
 import com.messagemedia.service.MessageErrorType;
 import com.messagemedia.service.MessageFormatType;
@@ -41,10 +32,24 @@ import com.messagemedia.service.SendMessagesBodyType;
 import com.messagemedia.service.SendMessagesResultType;
 import com.messagemedia.service.UnblockNumbersResultType;
 
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.List;
+import java.util.Vector;
+
 public class Manager {
 	
 	private static String userId;
-	private static String password;	
+	private static String password;
+
+	private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
 	
     /**
      * This example demonstrates how to authenticate a user and fetch their details.
@@ -107,7 +112,6 @@ public class Manager {
     
     /**
      * This example demonstrates how to send a single message.
-     * TODO: Add support for scheduled messages.
      * TODO: Add support for sending multiple messages in a single batch.
      */
     public static String sendMessage(SendPanel panel){
@@ -116,6 +120,7 @@ public class Manager {
     	String to        = panel.getToField().getText();
     	String origin    = panel.getOriginField().getText();
     	boolean delivery = panel.getDeliveryReportBox().isSelected();
+		XMLGregorianCalendar scheduled = null;
     	
     	short validity   = 1;
     	long uid         = 0;
@@ -131,7 +136,16 @@ public class Manager {
 				validity = Short.parseShort(panel.getValidityPeriodField().getText());
 			}catch(NumberFormatException e){}
 		}
-		
+
+		if (!panel.getScheduledField().getText().equals("")) {
+			try {
+				Date date = DATE_FORMAT.parse(panel.getScheduledField().getText());
+				GregorianCalendar gregorianCalendar = (GregorianCalendar) GregorianCalendar.getInstance();
+				gregorianCalendar.setTime(date);
+				scheduled = DatatypeFactory.newInstance().newXMLGregorianCalendar(gregorianCalendar);
+			} catch (Exception e) {}
+		}
+
     	// Build message
 		MessageType message = new MessageType();
         message.setFormat(MessageFormatType.SMS);
@@ -139,7 +153,12 @@ public class Manager {
 		message.setContent(content);
         message.setDeliveryReport(delivery);
         message.setValidityPeriod(validity);
-        message.setOrigin(origin);
+
+		if (!"".equals(origin)) {
+			message.setOrigin(origin);
+		}
+
+		message.setScheduled(scheduled);
 		
         // Add recipients
 		RecipientType recipient = new RecipientType(uid, to);
@@ -164,8 +183,27 @@ public class Manager {
     	}catch(Exception e){
     		return "Error: " + e.getMessage();
     	}
-    } 
-    
+    }
+
+	public static String deleteScheduledMessage(SendPanel panel) {
+		try {
+			long uid = 0;
+
+			if (!panel.getUidField().getText().equals("")) {
+				try {
+					uid = Long.parseLong(panel.getUidField().getText());
+				} catch(NumberFormatException e){}
+			}
+			// Build client and make SOAP request
+			MessageMediaSoapClient client = new MessageMediaSoapClient(userId, password);
+			DeleteScheduledMessagesResultType result = client.DeleteScheduledMessages(Collections.singletonList(uid));
+
+			return "Messages unscheduled: " + result.getUnscheduled();
+		} catch(Exception e){
+			return "Error: " + e.getMessage();
+		}
+	}
+
     /**
      * This example demonstrates how to fetch replies.
      * <em>You must then confirm receipt of each reply using the ConfirmReplies method.</em>
@@ -216,7 +254,7 @@ public class Manager {
     	
     	if(model.getRowCount() != 0){
     		for(int i=0 ; i < model.getRowCount() ; i++){
-    			listOfReceiptIds.add((long) model.getValueAt(i,0));
+    			listOfReceiptIds.add((Long) model.getValueAt(i,0));
     		}
 
             try{
@@ -290,7 +328,7 @@ public class Manager {
     	
     	if(model.getRowCount() != 0){
     		for(int i=0 ; i < model.getRowCount() ; i++){
-    			listOfReceiptIds.add((long) model.getValueAt(i,0));
+    			listOfReceiptIds.add((Long) model.getValueAt(i,0));
     		}
 
             try{
@@ -449,7 +487,7 @@ public class Manager {
         }        
         return output;
     }
-    
+
 
     /**
      * Private helper method used to render the results of blocking a number.
@@ -522,7 +560,6 @@ public class Manager {
      */
     private static String getPresentableDate(XMLGregorianCalendar calendar)
     {
-    	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-    	return sdf.format(calendar.toGregorianCalendar().getTime());
+    	return DATE_FORMAT.format(calendar.toGregorianCalendar().getTime());
     }
 }
