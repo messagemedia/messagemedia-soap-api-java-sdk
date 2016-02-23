@@ -10,18 +10,10 @@
 
 package com.messagemedia.clientgui;
 
-import java.awt.event.ActionListener;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.Font;
-
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.JTextPane;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JSeparator;
+import java.awt.event.ActionListener;
 
 @SuppressWarnings("serial")
 public class SendPanel extends JPanel {
@@ -113,8 +105,7 @@ public class SendPanel extends JPanel {
         mScheduledField.setBounds(139, 462, 201, 40);
         add(mScheduledField);
         mScheduledField.setColumns(10);
-        mScheduledField.setEditable(false);
-        
+
         mValidityPeriodField = new JTextField();
         mValidityPeriodField.setFont(new Font("Tahoma", Font.PLAIN, 18));
         mValidityPeriodField.setBounds(139, 516, 201, 40);
@@ -133,17 +124,31 @@ public class SendPanel extends JPanel {
         JButton sendButton = new JButton("Send");
 
         sendButton.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent arg0) {    			 
+        	public void actionPerformed(ActionEvent arg0) {
     			// Send message using Manager
     			String result = Manager.sendMessage(mWindow.getSendPanel());
-    			    			
-    			// Display result in dialog box		
+
+    			// Display result in dialog box
         		JOptionPane.showMessageDialog(mWindow,result);
-        	}        	
+        	}
         });
         sendButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        sendButton.setBounds(474, 481, 299, 75);
+        sendButton.setBounds(474, 381, 299, 75);
         add(sendButton);
+
+        JButton deleteButton = new JButton("Delete scheduled");
+
+        deleteButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent arg0) {
+                String result = Manager.deleteScheduledMessage(mWindow.getSendPanel());
+
+                // Display result in dialog box
+                JOptionPane.showMessageDialog(mWindow,result);
+            }
+        });
+        deleteButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        deleteButton.setBounds(474, 481, 299, 75);
+        add(deleteButton);
 	}
 	
 	public JTextField getToField() {
