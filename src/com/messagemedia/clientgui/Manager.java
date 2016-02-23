@@ -196,7 +196,7 @@ public class Manager {
 		try {
 			long uid = 0;
 
-			if (!panel.getUidField().getText().equals("")) {
+			if (!"".equals(panel.getUidField().getText())) {
 				try {
 					uid = Long.parseLong(panel.getUidField().getText());
 				} catch(NumberFormatException e){}
