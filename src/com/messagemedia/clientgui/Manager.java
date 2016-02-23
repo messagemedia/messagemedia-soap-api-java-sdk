@@ -126,24 +126,31 @@ public class Manager {
     	long uid         = 0;
     	
     	// Confirm fields are non-empty before attempting to cast
-		if(!panel.getUidField().getText().equals("")){
+		if (!"".equals(panel.getUidField().getText())){
 			try{
 				uid = Long.parseLong(panel.getUidField().getText());
-			}catch(NumberFormatException e){}
-		}
-		if(!panel.getValidityPeriodField().getText().equals("")){
-			try{
-				validity = Short.parseShort(panel.getValidityPeriodField().getText());
-			}catch(NumberFormatException e){}
+			}catch(NumberFormatException e){
+                System.err.println(e.getMessage());
+            }
 		}
 
-		if (!panel.getScheduledField().getText().equals("")) {
+		if (!"".equals(panel.getValidityPeriodField().getText())){
+			try{
+				validity = Short.parseShort(panel.getValidityPeriodField().getText());
+			}catch(NumberFormatException e){
+                System.err.println(e.getMessage());
+            }
+		}
+
+		if (!"".equals(panel.getScheduledField().getText())) {
 			try {
 				Date date = DATE_FORMAT.parse(panel.getScheduledField().getText());
 				GregorianCalendar gregorianCalendar = (GregorianCalendar) GregorianCalendar.getInstance();
 				gregorianCalendar.setTime(date);
 				scheduled = DatatypeFactory.newInstance().newXMLGregorianCalendar(gregorianCalendar);
-			} catch (Exception e) {}
+			} catch (Exception e) {
+                System.err.println(e.getMessage());
+            }
 		}
 
     	// Build message
