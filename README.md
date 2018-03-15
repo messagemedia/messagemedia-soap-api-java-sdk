@@ -1,5 +1,8 @@
-# MessageMedia Java SDK
-This library provides a simple interface for sending and receiving messages using the [MessageMedia SOAP API](http://www.messagemedia.com.au/wp-content/uploads/2013/05/MessageMedia_Messaging_Web_Service.pdf?eacfbb).
+# MessageMedia Java SDK (DEPRECATED)
+[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
+
+This is no longer supported, please consider using https://github.com/messagemedia/messages-java-sdk instead.
+T̶h̶i̶s̶ ̶l̶i̶b̶r̶a̶r̶y̶ ̶p̶r̶o̶v̶i̶d̶e̶s̶ ̶a̶ ̶s̶i̶m̶p̶l̶e̶ ̶i̶n̶t̶e̶r̶f̶a̶c̶e̶ ̶f̶o̶r̶ ̶s̶e̶n̶d̶i̶n̶g̶ ̶a̶n̶d̶ ̶r̶e̶c̶e̶i̶v̶i̶n̶g̶ ̶m̶e̶s̶s̶a̶g̶e̶s̶ ̶u̶s̶i̶n̶g̶ ̶t̶h̶e̶ ̶[̶M̶e̶s̶s̶a̶g̶e̶M̶e̶d̶i̶a̶ ̶S̶O̶A̶P̶ ̶A̶P̶I̶]̶(http://www.messagemedia.com.au/wp-content/uploads/2013/05/MessageMedia_Messaging_Web_Service.pdf?eacfbb).
 
 If you have any issue using this sample code, or would like to report a defect, you could [create a new Issue](https://github.com/messagemedia/messagemedia-java/issues/new) in Github or [Contact us](http://www.messagemedia.com.au/contact-us).
 
